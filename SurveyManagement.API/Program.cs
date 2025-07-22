@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SurveyManagement.Application.Abstractions;
-using SurveyManagement.Application.Features.Surveys.Commands;
+using SurveyManagement.Application.Features.Surveys.Commands.CreateSurvey;
 using SurveyManagement.Infrastructure.Persistence;
-using SurveyManagement.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,8 +25,7 @@ builder.Services.AddMediatR(cfg =>
 builder.Services.AddDbContext<SurveyDbContext>(options =>
     options.UseInMemoryDatabase("SurveyDb")); // Geliştirme için InMemory, sonra SQL geçeriz
 
-// Repository
-builder.Services.AddScoped<ISurveyRepository, EfSurveyRepository>();
+builder.Services.AddScoped<IUnitOfWork, EfUnitOfWork>();
 
 
 builder.Services.AddEndpointsApiExplorer();
@@ -35,7 +33,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

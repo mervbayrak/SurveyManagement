@@ -1,7 +1,7 @@
 ﻿using System;
 using MediatR;
 
-namespace SurveyManagement.Application.Features.Surveys.Commands
+namespace SurveyManagement.Application.Features.Surveys.Commands.CreateSurvey
 {
     public class CreateSurveyCommand : IRequest<Guid> // Dönüş tipi
     {

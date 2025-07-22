@@ -3,15 +3,15 @@ using MediatR;
 using SurveyManagement.Application.Abstractions;
 using SurveyManagement.Domain.Entities;
 
-namespace SurveyManagement.Application.Features.Surveys.Commands
+namespace SurveyManagement.Application.Features.Surveys.Commands.CreateSurvey
 {
     public class CreateSurveyCommandHandler : IRequestHandler<CreateSurveyCommand, Guid>
     {
-        private readonly ISurveyRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CreateSurveyCommandHandler(ISurveyRepository repository)
+        public CreateSurveyCommandHandler(IUnitOfWork unitOfWork)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<Guid> Handle(CreateSurveyCommand request, CancellationToken cancellationToken)
@@ -24,7 +24,8 @@ namespace SurveyManagement.Application.Features.Surveys.Commands
                 CreatedAt = DateTime.UtcNow
             };
 
-            await _repository.AddAsync(survey);
+            await _unitOfWork.Repository<Survey>().AddAsync(survey);
+            await _unitOfWork.SaveChangesAsync();
             return survey.Id;
         }
     }
