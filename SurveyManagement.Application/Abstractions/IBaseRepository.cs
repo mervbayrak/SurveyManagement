@@ -6,8 +6,8 @@ namespace SurveyManagement.Application.Abstractions
         Task<TEntity?> GetByIdAsync(Guid id);
         Task<List<TEntity>> GetAllAsync();
         Task AddAsync(TEntity entity);
-        void Update(TEntity entity);
-        void Delete(TEntity entity);
+        Task UpdateAsync(TEntity entity);
+        Task DeleteAsync(TEntity entity);
         Task SaveChangesAsync();
     }
 }

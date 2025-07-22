@@ -16,6 +16,8 @@
     <None Remove="Features\Surveys\Queries\GetAll\" />
     <None Remove="Features\Surveys\Commands\CreateSurvey\" />
     <None Remove="Features\Surveys\Queries\GetSurveyById\" />
+    <None Remove="Features\Surveys\Commands\UpdateSurvey\" />
+    <None Remove="Features\Surveys\Commands\DeleteSurvey\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstractions\" />
@@ -27,6 +29,8 @@
     <Folder Include="Features\Surveys\Queries\GetAll\" />
     <Folder Include="Features\Surveys\Commands\CreateSurvey\" />
     <Folder Include="Features\Surveys\Queries\GetSurveyById\" />
+    <Folder Include="Features\Surveys\Commands\UpdateSurvey\" />
+    <Folder Include="Features\Surveys\Commands\DeleteSurvey\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SurveyManagement.Domain\SurveyManagement.Domain.csproj" />

@@ -23,9 +23,18 @@ namespace SurveyManagement.Infrastructure.Repositories
 
         public async Task AddAsync(TEntity entity) => await _dbSet.AddAsync(entity);
 
-        public void Update(TEntity entity) => _dbSet.Update(entity);
+        public Task UpdateAsync(TEntity entity)
+        {
+            _context.Set<TEntity>().Update(entity);
+            return Task.CompletedTask;
+        }
 
-        public void Delete(TEntity entity) => _dbSet.Remove(entity);
+
+        public async Task DeleteAsync(TEntity entity)
+        {
+            _context.Set<TEntity>().Remove(entity);
+            await Task.CompletedTask;
+        }
 
         public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
     }

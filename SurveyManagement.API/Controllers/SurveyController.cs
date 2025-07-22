@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using SurveyManagement.API.Controllers;
 using SurveyManagement.Application.Features.Surveys.Commands.CreateSurvey;
+using SurveyManagement.Application.Features.Surveys.Commands.DeleteSurvey;
+using SurveyManagement.Application.Features.Surveys.Commands.UpdateSurvey;
 using SurveyManagement.Application.Features.Surveys.Queries.GetAll;
 using SurveyManagement.Application.Features.Surveys.Queries.GetSurveyById;
 
@@ -37,6 +39,20 @@ namespace SurveyManagement.WebAPI.Controllers
             if (result == null)
                 return NotFound();
 
+            return Ok(result);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateSurveyCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var result = await _mediator.Send(new DeleteSurveyCommand(id));
             return Ok(result);
         }
 
