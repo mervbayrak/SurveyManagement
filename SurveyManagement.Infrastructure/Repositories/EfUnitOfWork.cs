@@ -1,8 +1,8 @@
 ﻿using System;
 using SurveyManagement.Application.Abstractions;
-using SurveyManagement.Infrastructure.Repositories;
+using SurveyManagement.Infrastructure.Persistence;
 
-namespace SurveyManagement.Infrastructure.Persistence
+namespace SurveyManagement.Infrastructure.Repositories
 {
     public class EfUnitOfWork : IUnitOfWork
     {

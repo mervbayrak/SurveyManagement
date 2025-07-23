@@ -4,6 +4,7 @@ using SurveyManagement.Application.Abstractions;
 using SurveyManagement.Application.Features.Surveys.Commands.CreateSurvey;
 using SurveyManagement.Application.Mappings;
 using SurveyManagement.Infrastructure.Persistence;
+using SurveyManagement.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
