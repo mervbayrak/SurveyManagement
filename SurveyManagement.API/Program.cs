@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SurveyManagement.API.Middlewares;
 using SurveyManagement.Application.Abstractions;
 using SurveyManagement.Application.Features.Surveys.Commands.CreateSurvey;
 using SurveyManagement.Application.Mappings;
@@ -19,6 +20,7 @@ builder.Services.AddScoped<IUnitOfWork, EfUnitOfWork>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -30,6 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 

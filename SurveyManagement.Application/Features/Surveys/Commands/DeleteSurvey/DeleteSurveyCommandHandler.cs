@@ -1,6 +1,7 @@
 ﻿using System;
 using MediatR;
 using SurveyManagement.Application.Abstractions;
+using SurveyManagement.Application.Exceptions;
 using SurveyManagement.Application.Wrappers;
 using SurveyManagement.Domain.Entities;
 
@@ -17,24 +18,18 @@ namespace SurveyManagement.Application.Features.Surveys.Commands.DeleteSurvey
 
         public async Task<SurveyResult<bool>> Handle(DeleteSurveyCommand request, CancellationToken cancellationToken)
         {
-            try
+
+            var survey = await _unitOfWork.Repository<Survey>().GetByIdAsync(request.Id);
+
+            if (survey is null)
             {
-                var survey = await _unitOfWork.Repository<Survey>().GetByIdAsync(request.Id);
-
-                if (survey is null)
-                {
-                    return SurveyResult<bool>.Fail("Anket bulunamadı!");
-                }
-
-                await _unitOfWork.Repository<Survey>().DeleteAsync(survey);
-                await _unitOfWork.SaveChangesAsync();
-
-                return SurveyResult<bool>.Success(true, "Anket başarıyla silindi.");
+                throw new NotFoundException("Anket bulunamadı!");
             }
-            catch (Exception ex)
-            {
-                return SurveyResult<bool>.Fail("Anket silinemedi! " + ex.Message);
-            }
+
+            await _unitOfWork.Repository<Survey>().DeleteAsync(survey);
+            await _unitOfWork.SaveChangesAsync();
+
+            return SurveyResult<bool>.Success(true, "Anket başarıyla silindi.");
         }
     }
 }

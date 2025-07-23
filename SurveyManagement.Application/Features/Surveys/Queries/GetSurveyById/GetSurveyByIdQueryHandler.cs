@@ -2,6 +2,7 @@
 using MediatR;
 using SurveyManagement.Application.Abstractions;
 using SurveyManagement.Application.DTOs;
+using SurveyManagement.Application.Exceptions;
 using SurveyManagement.Application.Wrappers;
 using SurveyManagement.Domain.Entities;
 
@@ -23,7 +24,7 @@ namespace SurveyManagement.Application.Features.Surveys.Queries.GetSurveyById
             var survey = await _unitOfWork.Repository<Survey>().GetByIdAsync(request.Id);
 
             if (survey == null)
-                return SurveyResult<SurveyDto>.Fail("Anket bulunamadı.");
+                throw new NotFoundException("Anket bulunamadı!");
 
             var dto = _mapper.Map<SurveyDto>(survey);
             return SurveyResult<SurveyDto>.Success(dto, "Anket başarıyla getirildi.");
