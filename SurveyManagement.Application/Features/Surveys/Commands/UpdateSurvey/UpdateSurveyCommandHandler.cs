@@ -1,11 +1,12 @@
 ﻿using System;
 using MediatR;
 using SurveyManagement.Application.Abstractions;
+using SurveyManagement.Application.Wrappers;
 using SurveyManagement.Domain.Entities;
 
 namespace SurveyManagement.Application.Features.Surveys.Commands.UpdateSurvey
 {
-	public class UpdateSurveyCommandHandler : IRequestHandler<UpdateSurveyCommand, Guid>
+	public class UpdateSurveyCommandHandler : IRequestHandler<UpdateSurveyCommand, SurveyResult<Guid>>
 	{
         private readonly IUnitOfWork _unitofWork;
 
@@ -14,7 +15,7 @@ namespace SurveyManagement.Application.Features.Surveys.Commands.UpdateSurvey
             _unitofWork = unitofWork;
         }
 
-        public async Task<Guid> Handle(UpdateSurveyCommand request, CancellationToken cancellationToken)
+        public async Task<SurveyResult<Guid>> Handle(UpdateSurveyCommand request, CancellationToken cancellationToken)
         {
             var survey = new Survey()
             {
@@ -26,7 +27,7 @@ namespace SurveyManagement.Application.Features.Surveys.Commands.UpdateSurvey
             await _unitofWork.Repository<Survey>().UpdateAsync(survey);
             await _unitofWork.SaveChangesAsync();
 
-            return survey.Id;
+            return new SurveyResult<Guid>(survey.Id, "Anket başarıyla güncellendi.");
         }
     }
 }
