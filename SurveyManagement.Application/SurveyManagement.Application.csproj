@@ -18,6 +18,8 @@
     <None Remove="Features\Surveys\Queries\GetSurveyById\" />
     <None Remove="Features\Surveys\Commands\UpdateSurvey\" />
     <None Remove="Features\Surveys\Commands\DeleteSurvey\" />
+    <None Remove="Wrappers\" />
+    <None Remove="Mappings\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstractions\" />
@@ -31,11 +33,15 @@
     <Folder Include="Features\Surveys\Queries\GetSurveyById\" />
     <Folder Include="Features\Surveys\Commands\UpdateSurvey\" />
     <Folder Include="Features\Surveys\Commands\DeleteSurvey\" />
+    <Folder Include="Wrappers\" />
+    <Folder Include="Mappings\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SurveyManagement.Domain\SurveyManagement.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="13.0.0" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
   </ItemGroup>
 </Project>
