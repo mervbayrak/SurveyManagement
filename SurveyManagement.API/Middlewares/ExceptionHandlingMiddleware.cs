@@ -2,6 +2,7 @@
 using SurveyManagement.Application.Wrappers;
 using System.Net;
 using System.Text.Json;
+using SurveyManagement.Application.Exceptions;
 
 namespace SurveyManagement.API.Middlewares
 {
@@ -30,19 +31,30 @@ namespace SurveyManagement.API.Middlewares
             }
         }
 
-        private static Task HandleExceptionAsync(HttpContext context, Exception exception)
+        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            var code = HttpStatusCode.InternalServerError;
-
-            var response = SurveyResult<string>.Fail("Beklenmeyen bir hata oluştu.");
-            var result = JsonSerializer.Serialize(response);
-
             context.Response.ContentType = "application/json";
-            context.Response.StatusCode = (int)code;
-            return context.Response.WriteAsync(result);
+            var response = new SurveyResult<string>();
+
+            switch (exception)
+            {
+                case NotFoundException:
+                    context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                    response.Succeeded = false;
+                    response.Errors = new List<string> { exception.Message };
+                    break;
+
+                default:
+                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    response.Succeeded = false;
+                    response.Errors = new List<string> { "Sunucu hatası: " + exception.Message };
+                    break;
+            }
+
+            var json = JsonSerializer.Serialize(response);
+            await context.Response.WriteAsync(json);
         }
     }
-
 }
 
 
