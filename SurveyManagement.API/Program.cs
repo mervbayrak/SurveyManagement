@@ -26,6 +26,7 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddValidatorsFromAssemblyContaining<CreateSurveyCommandValidator>();
 
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
