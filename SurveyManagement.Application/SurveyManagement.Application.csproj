@@ -19,7 +19,9 @@
     <None Remove="Features\Surveys\Commands\UpdateSurvey\" />
     <None Remove="Features\Surveys\Commands\DeleteSurvey\" />
     <None Remove="Wrappers\" />
-    <None Remove="Mappings\" />
+    <None Remove="Common\" />
+    <None Remove="Common\Validation\" />
+    <None Remove="Common\Mappings\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstractions\" />
@@ -34,7 +36,9 @@
     <Folder Include="Features\Surveys\Commands\UpdateSurvey\" />
     <Folder Include="Features\Surveys\Commands\DeleteSurvey\" />
     <Folder Include="Wrappers\" />
-    <Folder Include="Mappings\" />
+    <Folder Include="Common\" />
+    <Folder Include="Common\Validation\" />
+    <Folder Include="Common\Mappings\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SurveyManagement.Domain\SurveyManagement.Domain.csproj" />

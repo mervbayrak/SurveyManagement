@@ -2,7 +2,7 @@
 using SurveyManagement.API.Middlewares;
 using SurveyManagement.Application.Abstractions;
 using SurveyManagement.Application.Features.Surveys.Commands.CreateSurvey;
-using SurveyManagement.Application.Mappings;
+using SurveyManagement.Application.Common.Mappings;
 using SurveyManagement.Infrastructure.Persistence;
 using SurveyManagement.Infrastructure.Repositories;
 
