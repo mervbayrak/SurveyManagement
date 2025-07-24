@@ -22,6 +22,8 @@
     <None Remove="Common\" />
     <None Remove="Common\Validation\" />
     <None Remove="Common\Mappings\" />
+    <None Remove="Common\Behaviors\" />
+    <None Remove="Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstractions\" />
@@ -39,6 +41,8 @@
     <Folder Include="Common\" />
     <Folder Include="Common\Validation\" />
     <Folder Include="Common\Mappings\" />
+    <Folder Include="Common\Behaviors\" />
+    <Folder Include="Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SurveyManagement.Domain\SurveyManagement.Domain.csproj" />
@@ -47,5 +51,7 @@
     <PackageReference Include="MediatR" Version="13.0.0" />
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FluentValidation" Version="11.11.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
   </ItemGroup>
 </Project>

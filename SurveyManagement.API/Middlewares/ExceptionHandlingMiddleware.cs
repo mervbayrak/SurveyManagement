@@ -2,7 +2,7 @@
 using SurveyManagement.Application.Wrappers;
 using System.Net;
 using System.Text.Json;
-using SurveyManagement.Domain.Exceptions;
+using SurveyManagement.Application.Exceptions;
 
 namespace SurveyManagement.API.Middlewares
 {

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace SurveyManagement.Domain.Exceptions
+namespace SurveyManagement.Application.Exceptions
 {
     public class NotFoundException : Exception
     {

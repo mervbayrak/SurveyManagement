@@ -5,6 +5,9 @@ using SurveyManagement.Application.Features.Surveys.Commands.CreateSurvey;
 using SurveyManagement.Application.Common.Mappings;
 using SurveyManagement.Infrastructure.Persistence;
 using SurveyManagement.Infrastructure.Repositories;
+using FluentValidation;
+using MediatR;
+using SurveyManagement.Application.Common.Behaviors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +23,9 @@ builder.Services.AddDbContext<SurveyDbContext>(options =>
 builder.Services.AddScoped<IUnitOfWork, EfUnitOfWork>();
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
+builder.Services.AddValidatorsFromAssemblyContaining<CreateSurveyCommandValidator>();
 
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
