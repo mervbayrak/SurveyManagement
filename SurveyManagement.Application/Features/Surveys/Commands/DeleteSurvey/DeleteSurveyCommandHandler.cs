@@ -1,9 +1,9 @@
 ﻿using System;
 using MediatR;
 using SurveyManagement.Application.Abstractions;
+using SurveyManagement.Application.Exceptions;
 using SurveyManagement.Application.Wrappers;
 using SurveyManagement.Domain.Entities;
-using SurveyManagement.Domain.Exceptions;
 
 namespace SurveyManagement.Application.Features.Surveys.Commands.DeleteSurvey
 {
