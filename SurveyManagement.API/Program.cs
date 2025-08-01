@@ -8,6 +8,8 @@ using SurveyManagement.Infrastructure.Repositories;
 using FluentValidation;
 using MediatR;
 using SurveyManagement.Application.Common.Behaviors;
+using SurveyManagement.Application.Messaging.Interfaces;
+using SurveyManagement.Infrastructure.Messaging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +29,14 @@ builder.Services.AddValidatorsFromAssemblyContaining<CreateSurveyCommandValidato
 
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+
+MassTransitConfigurator.Configure(
+    builder.Services,
+    builder.Configuration,
+    typeof(IEventHandlerMarker).Assembly
+);
+builder.Services.AddScoped<IEventPublisher, MassTransitEventPublisher>();
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
