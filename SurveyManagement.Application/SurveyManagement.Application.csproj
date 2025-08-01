@@ -24,6 +24,9 @@
     <None Remove="Common\Mappings\" />
     <None Remove="Common\Behaviors\" />
     <None Remove="Exceptions\" />
+    <None Remove="Common\Extensions\" />
+    <None Remove="Messaging\" />
+    <None Remove="Messaging\Events\SurveyCreated\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstractions\" />
@@ -43,6 +46,9 @@
     <Folder Include="Common\Mappings\" />
     <Folder Include="Common\Behaviors\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Common\Extensions\" />
+    <Folder Include="Messaging\" />
+    <Folder Include="Messaging\Events\SurveyCreated\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SurveyManagement.Domain\SurveyManagement.Domain.csproj" />
@@ -53,5 +59,7 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="FluentValidation" Version="11.11.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.5.1" />
+    <PackageReference Include="MassTransit" Version="8.5.1" />
   </ItemGroup>
 </Project>
