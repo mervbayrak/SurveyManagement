@@ -30,6 +30,19 @@ builder.Services.AddValidatorsFromAssemblyContaining<CreateSurveyCommandValidato
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
 
+
+var handlerTypes = typeof(IEventHandlerMarker).Assembly
+    .GetTypes()
+    .Where(t => !t.IsAbstract && !t.IsInterface)
+    .SelectMany(t => t.GetInterfaces(), (type, iface) => new { type, iface })
+    .Where(x => x.iface.IsGenericType && x.iface.GetGenericTypeDefinition() == typeof(IEventHandler<>))
+    .ToList();
+
+foreach (var registration in handlerTypes)
+{
+    builder.Services.AddScoped(registration.iface, registration.type);
+}
+
 MassTransitConfigurator.Configure(
     builder.Services,
     builder.Configuration,
@@ -44,11 +57,9 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
+
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();

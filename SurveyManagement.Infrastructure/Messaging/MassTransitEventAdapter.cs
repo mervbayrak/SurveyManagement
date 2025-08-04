@@ -15,7 +15,8 @@ namespace SurveyManagement.Infrastructure.Messaging
 
         public async Task Consume(ConsumeContext<TEvent> context)
         {
-            var handler = _serviceProvider.GetService<IEventHandler<TEvent>>();
+            using var scope = _serviceProvider.CreateScope();
+            var handler = scope.ServiceProvider.GetService<IEventHandler<TEvent>>();
 
             if (handler != null)
             {

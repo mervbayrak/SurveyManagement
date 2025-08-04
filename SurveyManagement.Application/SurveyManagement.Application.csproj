@@ -27,6 +27,7 @@
     <None Remove="Common\Extensions\" />
     <None Remove="Messaging\" />
     <None Remove="Messaging\Events\SurveyCreated\" />
+    <None Remove="Messaging\Events\SurveyUpdated\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstractions\" />
@@ -49,6 +50,7 @@
     <Folder Include="Common\Extensions\" />
     <Folder Include="Messaging\" />
     <Folder Include="Messaging\Events\SurveyCreated\" />
+    <Folder Include="Messaging\Events\SurveyUpdated\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SurveyManagement.Domain\SurveyManagement.Domain.csproj" />
