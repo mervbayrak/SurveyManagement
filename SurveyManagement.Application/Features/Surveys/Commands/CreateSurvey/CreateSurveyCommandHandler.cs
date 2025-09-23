@@ -21,13 +21,7 @@ namespace SurveyManagement.Application.Features.Surveys.Commands.CreateSurvey
 
         public async Task<SurveyResult<Guid>> Handle(CreateSurveyCommand request, CancellationToken cancellationToken)
         {
-            var survey = new Survey
-            {
-                Id = Guid.NewGuid(),
-                Title = request.Title,
-                Description = request.Description,
-                CreatedAt = DateTime.UtcNow
-            };
+            var survey = Survey.Create(request.Title, request.Description);
 
             await _unitOfWork.Repository<Survey>().AddAsync(survey);
             await _unitOfWork.SaveChangesAsync();
