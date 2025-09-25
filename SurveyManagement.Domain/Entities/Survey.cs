@@ -4,7 +4,7 @@ using SurveyManagement.Domain.Events;
 
 namespace SurveyManagement.Domain.Entities
 {
-    public class Survey : BaseEntity
+    public class Survey : AggregateRoot
     {
         public string Title { get; private set; }
         public string Description { get; private set; }
@@ -19,7 +19,7 @@ namespace SurveyManagement.Domain.Entities
             Description = description;
             CreatedAt = DateTime.UtcNow;
             IsActive = true;
-            AddDomainEvent(new SurveyCreatedDomainEvent(this));
+            AddDomainEvent(new SurveyCreatedDomainEvent(Id, title));
         }
 
         public static Survey Create(string title, string description)
