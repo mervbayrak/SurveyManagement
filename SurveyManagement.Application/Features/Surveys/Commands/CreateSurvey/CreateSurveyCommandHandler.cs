@@ -1,7 +1,6 @@
 ﻿using System;
 using MediatR;
 using SurveyManagement.Application.Abstractions;
-using SurveyManagement.Application.Messaging.Events.SurveyCreated;
 using SurveyManagement.Application.Messaging.Interfaces;
 using SurveyManagement.Application.Wrappers;
 using SurveyManagement.Domain.Entities;
@@ -25,13 +24,6 @@ namespace SurveyManagement.Application.Features.Surveys.Commands.CreateSurvey
 
             await _unitOfWork.Repository<Survey>().AddAsync(survey);
             await _unitOfWork.SaveChangesAsync();
-
-            await _publisher.Publish(new SurveyCreatedEvent
-            {
-                SurveyId = survey.Id,
-                Title = survey.Title,
-                Description = survey.Description
-            });
 
             return new SurveyResult<Guid>(survey.Id, "Anket başarıyla oluşturuldu.");
         }

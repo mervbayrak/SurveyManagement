@@ -10,11 +10,15 @@
     <None Remove="Persistence\" />
     <None Remove="Repositories\" />
     <None Remove="Messaging\" />
+    <None Remove="Messaging\EventHandlers\" />
+    <None Remove="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Persistence\" />
     <Folder Include="Repositories\" />
     <Folder Include="Messaging\" />
+    <Folder Include="Messaging\EventHandlers\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />

@@ -1,18 +1,19 @@
 ﻿using System;
+using MediatR;
 using SurveyManagement.Domain.Common;
-using SurveyManagement.Domain.Entities;
 
 namespace SurveyManagement.Domain.Events
 {
-    public class SurveyCreatedDomainEvent : IDomainEvent
+    public class SurveyCreatedDomainEvent : IDomainEvent, INotification
     {
-        public Survey Survey { get; }
+        public Guid SurveyId { get; }
+        public string Title { get; }
 
-        public SurveyCreatedDomainEvent(Survey survey)
+        public SurveyCreatedDomainEvent(Guid surveyId, string title)
         {
-            Survey = survey;
+            SurveyId = surveyId;
+            Title = title;
         }
     }
-
 }
 
