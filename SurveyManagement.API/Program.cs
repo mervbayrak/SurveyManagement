@@ -10,7 +10,7 @@ using MediatR;
 using SurveyManagement.Application.Common.Behaviors;
 using SurveyManagement.Application.Messaging.Interfaces;
 using SurveyManagement.Infrastructure.Messaging;
-using SurveyManagement.Infrastructure.Messaging.EventHandlers;
+using SurveyManagement.Infrastructure.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +18,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssemblyContaining<CreateSurveyCommand>());
-builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssemblyContaining<SurveyCreatedDomainEventHandler>());
+{
+    cfg.RegisterServicesFromAssemblyContaining<IApplicationMarker>();
+    cfg.RegisterServicesFromAssemblyContaining<IInfrastructureMarker>();
+});
 
 
 builder.Services.AddDbContext<SurveyDbContext>(options =>
