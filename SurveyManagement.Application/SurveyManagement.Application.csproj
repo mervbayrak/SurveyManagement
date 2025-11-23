@@ -26,7 +26,9 @@
     <None Remove="Exceptions\" />
     <None Remove="Common\Extensions\" />
     <None Remove="Messaging\" />
-    <None Remove="Messaging\Events\SurveyCreated\" />
+    <None Remove="Messaging\Events\Survey\" />
+    <None Remove="Messaging\Events\Survey\SurveyCreated\" />
+    <None Remove="Messaging\Events\Survey\SurveyUpdated\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstractions\" />
@@ -48,7 +50,9 @@
     <Folder Include="Exceptions\" />
     <Folder Include="Common\Extensions\" />
     <Folder Include="Messaging\" />
-    <Folder Include="Messaging\Events\SurveyCreated\" />
+    <Folder Include="Messaging\Events\Survey\" />
+    <Folder Include="Messaging\Events\Survey\SurveyCreated\" />
+    <Folder Include="Messaging\Events\Survey\SurveyUpdated\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SurveyManagement.Domain\SurveyManagement.Domain.csproj" />
