@@ -61,9 +61,13 @@
 │   │               └── GetSurveyByIdQueryHandler.cs
 │   ├── Messaging
 │   │   ├── Events
-│   │   │   └── SurveyCreated
-│   │   │       ├── SurveyCreatedEvent.cs
-│   │   │       └── SurveyCreatedEventHandler.cs
+│   │   │   └── Survey
+│   │   │       ├── SurveyCreated
+│   │   │       │   ├── SurveyCreatedEvent.cs
+│   │   │       │   └── SurveyCreatedEventHandler.cs
+│   │   │       └── SurveyUpdated
+│   │   │           ├── SurveyUpdatedEvent.cs
+│   │   │           └── SurveyUpdatedEventHandler.cs
 │   │   └── Interfaces
 │   │       ├── IEventHandler.cs
 │   │       ├── IEventHandlerMarker.cs
@@ -76,9 +80,7 @@
 │   │   ├── BaseEntity.cs
 │   │   └── IDomainEvent.cs
 │   ├── Entities
-│   │   ├── Survey.cs
-│   │   ├── SurveyAnswerOption.cs
-│   │   └── SurveyQuestion.cs
+│   │   └── Survey.cs
 │   ├── Events
 │   │   ├── AggregateRoot.cs
 │   │   └── SurveyCreatedDomainEvent.cs
@@ -103,4 +105,4 @@
 ├── SurveyManagement.sln
 └── structure.txt
 
-41 directories, 63 files
+43 directories, 63 files
