@@ -1,7 +1,6 @@
 ````markdown
 📁 Project Structure
 
-```
 
 ├── SurveyManagement
 │   ├── Program.cs
