@@ -6,6 +6,7 @@ using SurveyManagement.Application.Features.Surveys.Commands.DeleteSurvey;
 using SurveyManagement.Application.Features.Surveys.Commands.UpdateSurvey;
 using SurveyManagement.Application.Features.Surveys.Queries.GetAll;
 using SurveyManagement.Application.Features.Surveys.Queries.GetSurveyById;
+using SurveyManagement.Application.Features.Surveys.Queries.SearchSurveys;
 
 namespace SurveyManagement.WebAPI.Controllers
 {
@@ -53,6 +54,19 @@ namespace SurveyManagement.WebAPI.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             var result = await _mediator.Send(new DeleteSurveyCommand(id));
+            return Ok(result);
+        }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> Search([FromQuery] string query, CancellationToken cancellationToken)
+        {
+            var result = await _mediator.Send(
+                new SearchSurveysQuery
+                {
+                    Query = query
+                },
+                cancellationToken);
+
             return Ok(result);
         }
 

@@ -19,7 +19,7 @@ namespace SurveyManagement.Domain.Entities
             Description = description;
             CreatedAt = DateTime.UtcNow;
             IsActive = true;
-            AddDomainEvent(new SurveyCreatedDomainEvent(Id, title));
+            AddDomainEvent(new SurveyCreatedDomainEvent(Id, title, description));
         }
 
         public static Survey Create(string title, string description)

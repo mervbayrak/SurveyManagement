@@ -11,6 +11,12 @@ using SurveyManagement.Application.Common.Behaviors;
 using SurveyManagement.Application.Messaging.Interfaces;
 using SurveyManagement.Infrastructure.Messaging;
 using SurveyManagement.Infrastructure.DependencyInjection;
+using SurveyManagement.Application.Abstractions.AI;
+using SurveyManagement.Application.Abstractions.VectorDatabase;
+using SurveyManagement.Infrastructure.AI.OpenAI;
+using SurveyManagement.Infrastructure.VectorDatabase.Qdrant;
+using Qdrant.Client;
+using SurveyManagement.Infrastructure.AI.Ollama;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +40,38 @@ builder.Services.AddValidatorsFromAssemblyContaining<CreateSurveyCommandValidato
 
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+
+builder.Services.AddSingleton<QdrantClient>(
+    new QdrantClient("localhost", 6334));
+
+builder.Services.AddScoped<QdrantCollectionInitializer>();
+
+builder.Services.AddScoped<
+    ISurveyVectorRepository,
+    QdrantSurveyVectorRepository>();
+
+builder.Services.AddScoped<
+    IEmbeddingService,
+    OpenAIEmbeddingService>();
+
+
+//builder.Services.AddSingleton<IEmbeddingService>(sp =>
+//{
+//    var configuration = sp.GetRequiredService<IConfiguration>();
+
+//    var apiKey = configuration["OpenAI:ApiKey"]
+//        ?? throw new InvalidOperationException(
+//            "OpenAI API key bulunamadı.");
+
+//    return new OpenAIEmbeddingService();
+//    //return new OpenAIEmbeddingService(apiKey);
+//});
+
+builder.Services.AddHttpClient<IEmbeddingService, OllamaEmbeddingService>(
+    client =>
+    {
+        client.BaseAddress = new Uri("http://localhost:11434");
+    });
 
 
 var handlerTypes = typeof(IEventHandlerMarker).Assembly
@@ -60,6 +98,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var initializer = scope.ServiceProvider.GetRequiredService<QdrantCollectionInitializer>();
+
+    await initializer.InitializeAsync();
+}
 
 
 app.UseSwagger();

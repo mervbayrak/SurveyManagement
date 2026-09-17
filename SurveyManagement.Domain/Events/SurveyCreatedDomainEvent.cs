@@ -8,11 +8,13 @@ namespace SurveyManagement.Domain.Events
     {
         public Guid SurveyId { get; }
         public string Title { get; }
+        public string Description { get; }
 
-        public SurveyCreatedDomainEvent(Guid surveyId, string title)
+        public SurveyCreatedDomainEvent(Guid surveyId, string title, string description)
         {
             SurveyId = surveyId;
             Title = title;
+            Description = description;
         }
     }
 }

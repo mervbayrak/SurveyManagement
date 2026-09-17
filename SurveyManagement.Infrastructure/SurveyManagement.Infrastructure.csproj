@@ -13,6 +13,11 @@
     <None Remove="Messaging\EventHandlers\" />
     <None Remove="Extensions\" />
     <None Remove="DependencyInjection\" />
+    <None Remove="VectorDatabase\" />
+    <None Remove="VectorDatabase\Qdrant\" />
+    <None Remove="AI\" />
+    <None Remove="AI\OpenAI\" />
+    <None Remove="AI\Ollama\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Persistence\" />
@@ -21,11 +26,18 @@
     <Folder Include="Messaging\EventHandlers\" />
     <Folder Include="Extensions\" />
     <Folder Include="DependencyInjection\" />
+    <Folder Include="VectorDatabase\" />
+    <Folder Include="VectorDatabase\Qdrant\" />
+    <Folder Include="AI\" />
+    <Folder Include="AI\OpenAI\" />
+    <Folder Include="AI\Ollama\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
     <PackageReference Include="MassTransit" Version="8.5.1" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="8.5.1" />
+    <PackageReference Include="Qdrant.Client" Version="1.19.0" />
+    <PackageReference Include="OpenAI" Version="2.13.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SurveyManagement.Domain\SurveyManagement.Domain.csproj" />

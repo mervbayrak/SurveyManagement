@@ -22,10 +22,10 @@ namespace SurveyManagement.Infrastructure.Messaging.EventHandlers
             {
                 SurveyId = notification.SurveyId,
                 Title = notification.Title,
-                Description = "" // domain event’te yoksa boş geçilebilir
+                Description =notification.Description // domain event’te yoksa boş geçilebilir
             };
 
-            _eventPublisher.Publish(integrationEvent);
+            await _eventPublisher.Publish(integrationEvent);
 
         }
     }

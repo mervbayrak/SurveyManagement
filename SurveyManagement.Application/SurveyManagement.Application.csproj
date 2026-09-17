@@ -29,6 +29,9 @@
     <None Remove="Messaging\Events\Survey\" />
     <None Remove="Messaging\Events\Survey\SurveyCreated\" />
     <None Remove="Messaging\Events\Survey\SurveyUpdated\" />
+    <None Remove="Abstractions\VectorDatabase\" />
+    <None Remove="Abstractions\AI\" />
+    <None Remove="Features\Surveys\Queries\SearchSurveys\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Abstractions\" />
@@ -53,6 +56,9 @@
     <Folder Include="Messaging\Events\Survey\" />
     <Folder Include="Messaging\Events\Survey\SurveyCreated\" />
     <Folder Include="Messaging\Events\Survey\SurveyUpdated\" />
+    <Folder Include="Abstractions\VectorDatabase\" />
+    <Folder Include="Abstractions\AI\" />
+    <Folder Include="Features\Surveys\Queries\SearchSurveys\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SurveyManagement.Domain\SurveyManagement.Domain.csproj" />
